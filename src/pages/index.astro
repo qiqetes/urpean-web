@@ -1,9 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import Header from "../components/Header.astro";
+import Product from "../components/Product.astro";
+import Products from "../components/Products.jsx";
+import Expertise from "../components/Expertise.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Urpean">
+  <Header visible={false} />
   <main>
     <div class="presentation">
       <img src="/urpean_logo.svg" alt="Logo urpean" class="mainLogo" />
@@ -14,8 +20,9 @@ import Card from "../components/Card.astro";
         que os invitamos a sumergiros con nosotros para disfrutar de una
         inmejorable experiencia gastronómica.
       </p>
+      <img src="/c_2.png" alt="Centollo" class="footImg" />
     </div>
-    <div class="philosophy">
+    <div class="whitey">
       <h1>Nuestra filosofía</h1>
       <p>
         Hemos nacido y crecido en la costa gipuzkana, un lugar lleno de belleza
@@ -25,79 +32,67 @@ import Card from "../components/Card.astro";
         vuestros paladares.
       </p>
     </div>
-    <ul role="list" class="link-card-grid">
-      <Card
-        href="https://docs.astro.build/"
-        title="Documentation"
-        body="Learn how Astro works and explore the official API docs."
-      />
-      <Card
-        href="https://astro.build/integrations/"
-        title="Integrations"
-        body="Supercharge your project with new frameworks and libraries."
-      />
-      <Card
-        href="https://astro.build/themes/"
-        title="Themes"
-        body="Explore a galaxy of community-built starter themes."
-      />
-      <Card
-        href="https://astro.build/chat/"
-        title="Community"
-        body="Come say hi to our amazing Discord community. ❤️"
-      />
-    </ul>
+    <Products client:load />
+    <Expertise />
   </main>
+  <Footer />
 </Layout>
 
-<style>
+<style is:global>
   main {
     margin: auto;
-    padding: 1.5rem;
     max-width: 60ch;
     text-align: center;
-    max-width: 400px;
+    overflow: hidden;
+
+    p {
+      margin: 10px;
+    }
   }
   h1 {
     font-size: 3rem;
     font-weight: 500;
     margin: 0;
+    margin-top: 0.5em;
     font-family: "Reenie Beanie", cursive;
   }
   .mainLogo {
-    height: 170px;
+    height: 130px;
     margin-bottom: 2em;
   }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
+  .footImg {
+    opacity: 0.8;
+    margin-top: 4em;
+    width: 50%;
   }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
+  .presentation {
+    margin: 100px 0px;
+    padding: 25px;
+  }
+  .whitey {
     background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
+    color: var(--sea);
+    padding: 20px;
   }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
+
+  .product {
+    width: 100 %;
   }
-  .instructions strong {
-    color: rgb(var(--accent));
+  .product img {
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    filter: url(#brightness); /* required for FF */
+    filter: brightness(85%);
   }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
+
+  .product h5 {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+  }
+  .fullW {
+    width: 100%;
   }
 </style>

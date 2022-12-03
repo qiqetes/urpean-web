@@ -1,0 +1,27 @@
+---
+export interface Props {
+  title: string;
+  href: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<div class="product">
+  <img src={href} alt={title} />
+</div>
+
+<style>
+  .product {
+    width: 80vw;
+    max-width: 400px;
+    height: 80vw;
+    max-height: 400px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+</style>

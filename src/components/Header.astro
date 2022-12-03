@@ -1,0 +1,111 @@
+---
+export interface Props {
+  visible: boolean;
+}
+
+const { visible } = Astro.props;
+---
+
+<header id="header" class={(visible && "visible") || ""}>
+  <div class="precontainer">
+    <div class="container">
+      <a href="/">
+        <img src="/urpean_logo_full.svg" alt="Logo urpean" />
+      </a>
+      <button aria-label="Abrir menú" aria-controls="menu" id="menu-button">
+        <img src="/wave_menu.svg" alt="" />
+      </button>
+    </div>
+  </div>
+  <div class="menu" aria-hidden="true" aria-label="Menú" id="menu">
+    <a href="/contacto">Contacta con nostros</a>
+    <a href="https://instagram.com/urpeanvda">Instagram</a>
+    <!-- <a href="https://facebook.com/urpean">Facebook</a> -->
+  </div>
+  <!-- <img src="" alt="Olitas" /> -->
+</header>
+<style>
+  header {
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.5s;
+  }
+  header img {
+    width: 87px;
+  }
+  .precontainer {
+    width: 100%;
+    background-color: white;
+  }
+  .container {
+    position: relative;
+    z-index: 99999;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 10px 20px;
+  }
+  header.visible {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+  button img {
+    width: 30px;
+  }
+  #menu {
+    background-color: white;
+    z-index: 1;
+    /* display: none; */
+    transition: transform 0.5s;
+    transform: translateY(-100%);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+  }
+  #menu.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #menu a {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+  }
+</style>
+<script define:vars={{ visible }}>
+  const menuButton = document.getElementById("menu-button");
+  const menu = document.getElementById("menu");
+
+  if (!visible) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        document.getElementById("header")?.classList.add("visible");
+      } else {
+        document.getElementById("header")?.classList.remove("visible");
+        menu?.classList.remove("visible");
+      }
+    });
+  }
+
+  menuButton?.addEventListener("click", () => {
+    menu?.classList.toggle("visible");
+  });
+  console.log(menu, menuButton);
+</script>
