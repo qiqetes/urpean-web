@@ -28,11 +28,11 @@ import Footer from "../components/Footer.astro";
         Hemos nacido y crecido en la costa gipuzkana, un lugar lleno de belleza
         y buena gastronomía. Pero nuestro instinto nos ha llevado a explorar
         lugares de igual o mayor atractivo. Por eso hoy, nos encontramos aquí,
-        en el valle de Arán cautivados por sus encantos y con ganas de cauivar
+        en el valle de Arán cautivados por sus encantos y con ganas de cautivar
         vuestros paladares.
       </p>
     </div>
-    <Products client:load />
+    <Products client:visible />
     <Expertise />
   </main>
   <Footer />
@@ -75,24 +75,71 @@ import Footer from "../components/Footer.astro";
     padding: 20px;
   }
 
+  #productos {
+    margin-top: 150px;
+  }
+
   .product {
     width: 100 %;
+    position: relative;
+    display: block;
+  }
+  .product h5 {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
+  .products {
+    margin-top: 40px;
   }
   .product img {
+    position: relative;
+    display: block;
     -webkit-filter: brightness(50%);
     -moz-filter: brightness(50%);
     filter: url(#brightness); /* required for FF */
-    filter: brightness(85%);
+    filter: brightness(80%);
+    object-fit: cover;
+    width: 95%;
+    aspect-ratio: 1/1;
+    max-height: 460px;
+    translate: translateY(35px);
+    transition: all 1s ease;
+  }
+
+  .product.current img {
+    width: 95%;
+    max-height: 500px;
+    transform: translateY(0px);
   }
 
   .product h5 {
+    font-family: "Playfair Display", serif;
+    font-size: 3em;
+    font-weight: 400;
     position: absolute;
     top: 80px;
     width: 100%;
     z-index: 10;
     text-align: center;
   }
+
+  .product p {
+    position: absolute;
+    top: 275px;
+    font-size: 1.2em;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+  }
   .fullW {
     width: 100%;
+  }
+
+  @media (min-width: 700px) {
+    main {
+      max-width: 820px;
+    }
   }
 </style>

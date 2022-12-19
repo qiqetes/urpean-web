@@ -1,0 +1,56 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Urpean contacta con nosotros">
+  <Header visible={true} />
+  <main>
+    <h3>Contacta con nosotros</h3>
+    <p aria-label="Dirección">
+      <span class="blackT" aria-hidden="true">Puedes encontrarnos en:</span>
+      Despacho de marisco 🦀 Vielha - Val D’Aran 📍 Passeg de la Libertat 15
+    </p>
+    <p aria-label="Teléfono de contacto">
+      <span class="blackT" aria-hidden="true">Teléfono de contacto</span>
+      <a href="tel:+34-660898248">Tlf: +34 660898248</a>
+    </p>
+    <p aria-label="Mail de urpean">
+      <span class="blackT">Envíanos un mail con tu pedido a:</span>
+      <a href="mailto:info@urpean.cat">info@urpean.cat</a>
+    </p>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 820px;
+    font-size: 2em;
+  }
+  h3 {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.8em;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  a {
+    color: var(--color-primary);
+  }
+
+  a:hover {
+    color: #f5a623;
+  }
+
+  @media (max-width: 700px) {
+    main {
+      margin: 30px;
+      padding: 10px;
+    }
+  }
+
+  .blackT {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+</style>
